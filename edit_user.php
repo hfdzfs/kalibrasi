@@ -1,0 +1,100 @@
+<?php
+    $judul = "Edit User";
+    include "nav-li.php";
+    include 'koneksi.php';
+    include 'fungsi_doc.php';
+
+    $id = $_GET['nomor'];
+    $select = "SELECT * FROM user WHERE id_user = '$id'";
+    $query = mysqli_query($koneksi, $select);
+
+    if(isset($_POST['btn_tambah'])){
+        edit_user($_POST);
+    }
+
+?>
+
+<!-- container -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 d-block mr-auto ml-auto mt-3">
+            <h2 class="text-center mt-3">Dokumen Internal Lab Kalibrasi Almega Sejahtera</h2>
+            <hr>
+            <br>
+            <form method="post" class="d-block ml-auto mr-auto" style="box-sizing: border-box; border-style: solid; border-color: maroon; padding: 20px">
+                <h2 class="text-center" style="box-sizing: border-box; background-color: mediumblue; color: white">Edit User</h2>
+
+                <?php while($q = mysqli_fetch_array($query)) :?>
+
+                <div class="form-group">
+                    <label>ID User</label>
+                    <input type="text" class="form-control" name="id_user" value="<?php echo $q['id_user']?>">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username / Nama</label>
+                    <input type="text" class="form-control" name="txt_user" value="<?php echo $q['username']?>">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="formpass" name="txt_pass" value="<?php echo $q['password']?>">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="showpass">
+                    <label for="showpass">Show Password</label>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="<?php echo $q['email']?>">
+                </div>
+                <div class="form-group">
+                    <label for="">PT. Almega Sejahtera</label>
+                    <select class="form-control" name="txt_pt">
+                        <option value="<?php echo $q['almega']?>"><?php echo ucfirst($q['almega'])?></option>
+                        <option value="jakarta">Jakarta</option>
+                        <option value="bandung">Bandung</option>
+                        <option value="semarang">Semarang</option>
+                        <option value="surabaya">Surabaya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Level</label>
+                    <select class="form-control" name="txt_level">
+                        <option value="<?php echo $q['level']?>"><?php echo ucfirst($q['level'])?></option>
+                        <option value="direktur">Direktur</option>
+                        <option value="ka_laboratorium">Ka. Laboratorium</option>
+                        <option value="ka_teknik">Ka. Teknik</option>
+                        <option value="staff_mutu">Staff Mutu</option>
+                        <option value="penyelia">Penyelia</option>
+                        <option value="admin">Admin</option>
+                        <option value="teknisi">Teknisi</option>
+                        <option value="host">Host</option>
+                    </select>
+                </div>
+                <br>
+                <a href="list-user.php" class="btn btn-warning my-3">Back</a>
+                <button type="submit" class="btn btn-primary mx-3 my-3" name="btn_tambah">Submit</button>
+                <?php endwhile; ?>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<?php
+    include 'footer.php';
+?>
+
+<script>
+    $(document).ready(function(){
+
+        $('#showpass').click(function(){
+            if($(this).is(':checked')){
+                $('#formpass').attr("type", "text")
+            }
+            else{
+                $('#formpass').attr("type", "password")
+            }
+        })
+    })
+</script>

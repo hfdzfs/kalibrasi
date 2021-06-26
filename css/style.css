@@ -1,0 +1,51 @@
+.login{
+    box-sizing: border-box;
+    background-color: silver;
+    border-radius: 4px;
+    padding: 20px;
+    display: block;
+    margin-right: auto; 
+    margin-left: auto;
+}
+
+.btn-login{
+    background-color: mediumblue;
+}
+
+/* nav */
+.Navigasi{
+    height: 100px;
+    background-color: mediumblue;
+    background-image: linear-gradient( mediumblue, whitesmoke);
+}
+
+.logo{
+    height: 100px;
+}
+
+.logo-kan{
+    height: 100px;
+}
+
+li:hover {
+        background-color: maroon;
+        color: white;
+}
+
+.dropdown-menu{
+    background-color: mediumblue;
+}
+
+.dropdown-item{
+    color: white;
+}
+
+.dropdown-item:hover{
+    background-color: maroon;
+    color: white;
+}
+
+/* footer */
+.footer{
+    background-color: mediumblue;
+}
